@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
+import os 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'ckeditor',
     'blog',
 ]
 
@@ -76,10 +77,17 @@ WSGI_APPLICATION = 'blogpy.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'postgres',
+        'USER' : 'postgres',
+        'PASSWORD' : 'postgres',
+        'HOST' : 'localhost',
+        'PORT' : '5432',
     }
 }
+
+
+
 
 
 # Password validation
@@ -124,3 +132,13 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+#CKEditor Settings
+#Static Files
+STATIC_ROOT= os.path.dirname(os.path.abspath(__file__))
+STATIC_URL ='/static/'
+
+#CKEditor
+CKEDITOR_BASEPATH= "/static/ckeditor/ckeditor/"
+CKEDITOR_UPLOAD_PATH= "/uploads/"
